@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "author": "Jelson Rodrigues & Jordan Maria",
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"

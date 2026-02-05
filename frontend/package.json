@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Frontend para o projeto do app de video chamadas",
   "productName": "Video Call Frontend",
-  "author": "JelsonJr <jelson.rodrigues.junior@gmail.com>",
+  "author": "Jelson Rodrigues & Jordan Maria",
   "type": "module",
   "private": true,
   "scripts": {

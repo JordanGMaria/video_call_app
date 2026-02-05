@@ -1,5 +1,6 @@
 {
   "name": "video_call_app",
+  "author": "Jelson Rodrigues & Jordan Maria",
   "private": false,
   "version": "1.0.0",
   "workspaces": [
