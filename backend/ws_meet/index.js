@@ -31,17 +31,13 @@ wss.on("connection", (ws) => {
         }
 
         rooms.get(data.roomId).push(ws);
-        console.log(
-          `[log info] Cliente entrou na sala: ${data.roomId} (total: ${rooms.get(data.roomId).length})`,
-        );
+        console.log(`[log info] Cliente entrou na sala: ${data.roomId} (total: ${rooms.get(data.roomId).length})`);
         break;
 
       case "offer":
       case "answer":
       case "candidate":
-        console.log(
-          `[log info] Encaminhando ${data.type} para sala ${ws.roomId}`,
-        );
+        console.log(`[log info] Encaminhando ${data.type} para sala ${ws.roomId}`);
         rooms.get(ws.roomId)?.forEach((client) => {
           if (client !== ws && client.readyState === 1) {
             client.send(JSON.stringify(data));
@@ -56,11 +52,9 @@ wss.on("connection", (ws) => {
     if (room) {
       rooms.set(
         ws.roomId,
-        room.filter((client) => client !== ws),
+        room.filter((client) => client !== ws)
       );
-      console.log(
-        `[log info] Cliente saiu da sala: ${ws.roomId} (total: ${rooms.get(ws.roomId).length})`,
-      );
+      console.log(`[log info] Cliente saiu da sala: ${ws.roomId} (total: ${rooms.get(ws.roomId).length})`);
       if (rooms.get(ws.roomId).length === 0) {
         rooms.delete(ws.roomId);
         console.log(`[log info] Sala removida: ${ws.roomId}`);
