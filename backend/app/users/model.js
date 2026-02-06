@@ -16,19 +16,11 @@ const Schema = mongoose.Schema({
     }
 });
 
-Schema.pre('save', function (next) {
-  const user = this;
+Schema.pre("save", async function () {
+  if (!this.isModified("password")) return;
 
-  if (!user.isModified('password')) return next();
-
-  bcrypt.genSalt(10, function (err, salt) {
-    if (err) return next(err);
-
-    bcrypt.hash(user.password, salt, function (err, hash) {
-      if (err) return next(err);
-      user.password = hash;
-      next();
-    });
-  });
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
 });
+
 export default mongoose.model("User", Schema);

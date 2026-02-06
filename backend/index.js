@@ -25,7 +25,7 @@ import USER from "./app/users/index.js";
 import ROOM from "./app/room/index.js";
 import LOGIN from "./app/users/auth/index.js";
 
-app.use('/login', LOGIN);
+app.use('/api/login', LOGIN);
 jwt.use('/users', USER);
 jwt.use('/room', ROOM);
 
