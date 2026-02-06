@@ -4,22 +4,37 @@ import pluginVue from "eslint-plugin-vue";
 import pluginQuasar from "@quasar/app-vite/eslint";
 import prettierSkipFormatting from "@vue/eslint-config-prettier/skip-formatting";
 
-module.exports = {
-  extends: ["eslint:recommended", "plugin:vue/vue3-recommended", "prettier"],
-  root: true,
-  env: {
-    browser: true,
-    es2021: true,
+export default [
+  {
+    ignores: [
+      "dist/**",
+      ".quasar/**",
+      "node_modules/**",
+      "src-capacitor/**",
+      "src-cordova/**",
+      "quasar.config.*.temporary.compiled*",
+    ],
   },
-  extends: ["eslint:recommended", "plugin:vue/vue3-recommended", "prettier"],
-  parserOptions: {
-    ecmaVersion: 12,
-    sourceType: "module",
-  },
-  rules: {
-    "prefer-promise-reject-errors": "off",
 
-    // allow debugger during development only
-    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
+  js.configs.recommended,
+  ...pluginVue.configs["flat/essential"],
+  ...pluginQuasar.configs.recommended(),
+  prettierSkipFormatting,
+
+  {
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        process: "readonly",
+      },
+    },
+
+    rules: {
+      "prefer-promise-reject-errors": "off",
+      "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
+    },
   },
-};
+];
