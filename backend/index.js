@@ -18,13 +18,12 @@ const PORT = 3000 + id;
 
 const server = createServer(app);
 
-app.get('/api', (req, res) => res.json({
-  online: true
-}));
-
-app.use('/api/v1', jwt);
-
+// PUBLIC ROUTES 
+app.get('/api', (req, res) => res.json({ online: true }));
 app.use("/api/login", (await import("./app/users/auth/index.js")).default);
+
+// PRIVATE ROUTES 
+app.use('/api/v1', jwt);
 jwt.use('/users', (await import("./app/users/index.js")).default); 
 jwt.use('/room', (await import("./app/room/index.js")).default);
 
