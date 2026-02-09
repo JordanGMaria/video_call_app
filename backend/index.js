@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(Helmet());
 
 const id = Number(process.argv[2]) || 0;
-const PORT = 3000 + id;
+const PORT = parseInt(process.env.PORT || 3000) + id;
 
 const server = createServer(app);
 

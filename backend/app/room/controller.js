@@ -19,8 +19,8 @@ export const index = async (req, res) => {
 
 export const insert = async (req, res) => {
 
-  req.body.root = req.body.root ? req.body.root : req.decoded._id;
-  if(!req.body.root){
+  req.body.owner = req.body.owner ? req.body.owner : req.decoded._id;
+  if(!req.body.owner){
     return res.status(300).json({ success: false, data, err: "Host not found.", form: req.body });
   }
 

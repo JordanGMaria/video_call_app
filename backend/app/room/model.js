@@ -4,7 +4,7 @@ const Schema = new mongoose.Schema({
   active: { type: Boolean, default: true },
   date_start: Date,
   date_end: Date,
-  root: {
+  owner: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
   },
