@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
+import "../env/index.js";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const DB = process.env.DB || "mongodb://127.0.0.1:27017/wsmeet";
+
 
 async function connect(attempt = 1) {
   try {

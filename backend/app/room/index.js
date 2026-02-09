@@ -1,11 +1,11 @@
 import express from "express";
-import controller from "./controller.js";
+import { index, insert, get, remove } from "./controller.js";
 
 const routes = express.Router();
 
-routes.post("/list", controller.index);
-routes.post("/", controller.new);
-routes.get("/:id", controller.get);
-routes.delete("/:id", controller.delete);
+routes.post("/list", index);
+routes.post("/", insert);
+routes.get("/:id", get);
+routes.delete("/:id", remove);
 
 export default routes;

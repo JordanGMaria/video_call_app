@@ -1,7 +1,8 @@
 import express from "express";
 import jwt from "jsonwebtoken";
+import "../env/index.js";
 
-const SECRET = process.env.JWT_SECRET || "PERSONCARE_SECRET_KEY";
+const SECRET = process.env.JWT_SECRET || "SECRET_KEY";
 
 const AuthRouter = express.Router();
 

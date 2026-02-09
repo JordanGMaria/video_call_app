@@ -1,9 +1,12 @@
+
+
+
 import express from "express";
 import cors from "cors";
 import { createServer } from "http";
 import Helmet from "helmet";
 import jwt from "./core/jwt/index.js";
-import connenction from "./core/connection/index.js";
+import "./core/connection/index.js";
 
 const app = express();
 app.use(cors({ origin: true, credentials: true }));
@@ -21,13 +24,9 @@ app.get('/api', (req, res) => res.json({
 
 app.use('/api/v1', jwt);
 
-import USER from "./app/users/index.js";
-import ROOM from "./app/room/index.js";
-import LOGIN from "./app/users/auth/index.js";
-
-app.use('/api/login', LOGIN);
-jwt.use('/users', USER);
-jwt.use('/room', ROOM);
+app.use("/api/login", (await import("./app/users/auth/index.js")).default);
+jwt.use('/users', (await import("./app/users/index.js")).default); 
+jwt.use('/room', (await import("./app/room/index.js")).default);
 
 app.use((err, req, res, next) => {
   console.error("Erro capturado:", err.message, req.url, req.body);

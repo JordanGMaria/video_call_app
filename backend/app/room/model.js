@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const Schema = new mongoose.Schema({
   active: { type: Boolean, default: true },
-  date: Date,
+  date_start: Date,
+  date_end: Date,
   root: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
