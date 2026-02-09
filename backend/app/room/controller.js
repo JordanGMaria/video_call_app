@@ -2,9 +2,9 @@ import Model from "./model.js";
 import mongoose from "mongoose";
 
 export const index = async (req, res) => {
-  const filtro = { active: true };
+  const filter = { active: true };
 
-  const query = Model.find(filtro);
+  const query = Model.find(filter);
 
   if (!req.body.all) {
     query.skip(req.body.skip || 0);
@@ -12,7 +12,7 @@ export const index = async (req, res) => {
   }
 
   const data = await query.exec();
-  const total = await Model.countDocuments(filtro);
+  const total = await Model.countDocuments(filter);
 
   res.json({ total, data });
 }
